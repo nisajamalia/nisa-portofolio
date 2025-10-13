@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+@layer utilities {
+  .bg-circularLight {
+    background: radial-gradient(circle, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 35%);
+  }
+
+  .bg-circularDark {
+    background: radial-gradient(circle, rgba(27,27,27,1) 0%, rgba(0,0,0,1) 35%);
+  }
+
+  .dark .bg-circularLight {
+    background: radial-gradient(circle, rgba(27,27,27,1) 0%, rgba(0,0,0,1) 35%);
+  }
+}
