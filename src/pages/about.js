@@ -55,41 +55,24 @@ const About = () => {
               </h2>
 
               <p className="font-medium mb-4">
-                Hi, I’m Nisa Jamalia, a Computer Science student at BINUS
-                University passionate about mobile app development and UI/UX
-                design. My journey in technology began in junior high school,
-                when I started coding simple games with Scratch and 
-                explored Unity to create interactive experiences. That early
-                curiosity soon grew into a deep passion for software development
-                and digital design.
+            Hi, I’m Nisa Jamalia, a Computer Science student at BINUS University passionate about mobile app development and UI/UX design.
+My journey began in junior high school, where I started coding simple games with Scratch and Unity — sparking a lasting passion for software and digital design.
               </p>
 
               <p className="font-medium mb-4">
-                With over three years of experience in Mobile app development using
-                Kotlin & Java, I enjoy building mobile apps that combine functionality
-                with beautiful user experiences.
+              With over three years of experience in mobile development using Kotlin & Java, I enjoy creating apps that combine functionality with beautiful user experiences. I also love crafting intuitive interfaces with Figma.
               </p>
 
               <p className="font-medium mb-4">
-                Beyond programming, I love crafting intuitive and visually
-                appealing interfaces with Figma.
+               I’m actively involved in tech communities such as GDGoC, IAK, HIMTI BINUS, and Lab Curiosity, where I mentor students and lead Android workshops.
               </p>
 
               <p className="font-medium mb-4">
-                I’m also actively involved in campus and tech communities — as a
-                core team member of Google Developer Group on Campus (GDGoC), a
-                Lab Curiosity assistant, and part of HIMTI BINUS Bandung.
-                Through these roles, I’ve mentored fellow students, delivered
-                workshops on Android development, and shared insights about
-                design and innovation.
+               As I continue my journey, I strive to keep improving my skills, explore emerging technologies like Data Science and IoT, and build digital products that are not only functional but also meaningful to users.
               </p>
 
               <p className="font-medium">
-                As I continue my journey, I strive to keep improving my skills,
-                explore emerging technologies like AI and IoT, and build digital
-                products that are not only functional but also meaningful to
-                users. For me, technology is more than just code — it’s a way to
-                connect creativity, innovation, and human experience.
+                 For me, technology is more than just code — it’s a way to connect creativity, innovation, and human experience.
               </p>
             </div>
 
@@ -116,36 +99,35 @@ const About = () => {
             </div>
 
             {/* BAGIAN ANGKA / STATISTIK */}
-            <div className="col-span-2 flex flex-col items-end justify-between">
-              <div className="flex flex-col items-end justify-center">
+            <div className="col-span-2 flex flex-col items-center justify-between text-center space-y-10">
+              <div className="flex flex-col items-center justify-center">
                 <span className="inline-block text-7xl font-bold">
-                  <AnimatedNumbers value={50} duration={2.5} />+
+                  <AnimatedNumbers value={20} duration={2.5} />+
                 </span>
-                <h2 className="text-xl font-medium capitalize text-dark/75 dark:text-light/75">
-                  Satisfied Clients
+                <h2 className="text-xl font-medium text-dark/75 dark:text-light/75 leading-snug max-w-[220px]">
+                  Tech, Competitions & Communities Joined
                 </h2>
               </div>
 
-              <div className="flex flex-col items-end justify-center">
+              <div className="flex flex-col items-center justify-center">
                 <span className="inline-block text-7xl font-bold">
                   <AnimatedNumbers value={40} duration={2.5} />+
                 </span>
-                <h2 className="text-xl font-medium capitalize text-dark/75 dark:text-light/75">
+                <h2 className="text-xl font-medium text-dark/75 dark:text-light/75">
                   Projects Completed
                 </h2>
               </div>
 
-              <div className="flex flex-col items-end justify-center">
+              <div className="flex flex-col items-center justify-center">
                 <span className="inline-block text-7xl font-bold">
                   <AnimatedNumbers value={5} duration={2.5} />+
                 </span>
-                <h2 className="text-xl font-medium capitalize text-dark/75 dark:text-light/75">
-                  Years of Experience
+                <h2 className="text-xl font-medium text-dark/75 dark:text-light/75">
+                  Years Of Experience
                 </h2>
               </div>
             </div>
           </div>
-
           <Skills />
           <Experience />
           <Education />

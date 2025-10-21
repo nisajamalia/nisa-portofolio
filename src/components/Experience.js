@@ -13,11 +13,11 @@ const Details = ({
   time,
   address,
   work,
-  image,
+  images = [],
 }) => {
   const ref = useRef(null);
 
-  // ✅ Pisahkan work berdasarkan line break ("\n")
+  // Pisahkan work menjadi bullet points
   const workPoints = work
     .split("\n")
     .map((line) => line.trim())
@@ -37,9 +37,9 @@ const Details = ({
         <Lilcon reference={ref} />
       </div>
 
-      {/* Content Card */}
+      {/* Card Content */}
       <div className="flex-1 bg-white border border-gray-100 hover:border-purple-400 rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-purple-300/40 transition-all duration-300">
-        {/* Title */}
+        {/* Header */}
         <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 leading-snug">
           {position}{" "}
           <a
@@ -52,12 +52,11 @@ const Details = ({
           </a>
         </h3>
 
-        {/* Time & Location */}
         <span className="block text-sm text-gray-500 mb-3">
           {time} • {address}
         </span>
 
-        {/* ✅ List Deskripsi */}
+        {/* Work Description */}
         <ul className="space-y-2 mb-5">
           {workPoints.map((point, index) => (
             <li key={index} className="flex items-start text-gray-700 text-sm sm:text-base">
@@ -67,21 +66,46 @@ const Details = ({
           ))}
         </ul>
 
-        {/* ✅ Gambar Dokumentasi */}
-        {image && (
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-            className="relative w-full max-w-3xl mx-auto rounded-xl overflow-hidden border border-gray-200 shadow-md"
-          >
-            <Image
-              src={image}
-              alt={`${position} - ${company}`}
-              width={900}
-              height={500}
-              className="w-full h-auto object-cover"
-            />
-          </motion.div>
+        {/* ✅ Image Handling */}
+        {images.length > 0 && (
+          <>
+            {images.length === 1 ? (
+              // === Single Image → full width
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="relative w-full rounded-2xl overflow-hidden border border-gray-200 shadow-md"
+              >
+                <Image
+                  src={images[0]}
+                  alt={`${position} - ${company}`}
+                  width={1000}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                />
+              </motion.div>
+            ) : (
+              // === Multiple Images → grid layout
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+                {images.map((src, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                    className="relative w-full rounded-xl overflow-hidden border border-gray-200 shadow-md"
+                  >
+                    <Image
+                      src={src}
+                      alt={`${position} - ${company} - image ${idx + 1}`}
+                      width={600}
+                      height={400}
+                      className="w-full h-48 object-cover"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </motion.li>
@@ -118,16 +142,14 @@ export default function Experience() {
 
         {/* Timeline Wrapper */}
         <div className="relative w-full max-w-3xl mx-auto">
-          {/* Main timeline line */}
+          {/* Timeline Lines */}
           <div className="absolute left-[1.3rem] sm:left-[1.65rem] top-0 w-[2px] h-full bg-gray-300 rounded-full" />
-
-          {/* Progress animation */}
           <motion.div
             style={{ scaleY: scrollYProgress }}
             className="absolute left-[1.3rem] sm:left-[1.65rem] top-0 w-[2px] h-full origin-top bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"
           />
 
-          {/* ✅ Experience List */}
+          {/* Experience List */}
           <ul className="relative mt-8 ml-6 sm:ml-8">
             <Details
               position="Fullstack Developer"
@@ -139,31 +161,70 @@ export default function Experience() {
 Built custom RESTful APIs with Laravel to handle property listings and user interactions
 Integrated Firebase Authentication for secure user access
 Gained full-stack mobile development experience, covering native Android UI/UX design, backend integration, and deployment`}
-              image="/images/experience/pkl_nisa.jpg"
+              images={["/images/experience/pkl_nisa.jpg"]}
             />
 
             <Details
               position="Core Team Android"
               company="Google Developer Group on Campus @BinusUniversity"
-              companyLink="https://www.instagram.com/p/DGhodnYpj0i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+              companyLink="https://www.instagram.com/p/DGhodnYpj0i/"
               time="October 2024 - Present"
               address="Bandung, Indonesia"
-              work={`Mentored peers in Android programming, providing guidance on development tools, best practices,
-and project execution.
-Shared expertise in Android development through interactive sessions and collaborative
-discussions.`}
-              image="/images/experience/gdg_nisa.png"
+              work={`Mentored peers in Android programming, providing guidance on tools, best practices, and project execution
+Shared expertise in Android development through workshops and collaborative sessions`}
+              images={[
+                "/images/experience/gdg_workshop_nisa.jpeg",
+                "/images/experience/gdgnisa2.PNG",
+              ]}
             />
 
             <Details
               position="Software & Product Development"
-              company="Asistant of Lab Curiosity @BINUS University"
+              company="Lab Curiosity @BINUS University"
               companyLink="https://binus.ac.id"
               time="2023 - Present"
               address="Bandung, Indonesia"
-              work={`Assisted in teaching and mentoring students in mobile programming and software engineering labs
-Focused on clean architecture, Kotlin MVVM, and UI/UX best practices`}
-              image="/images/experience/lab_curiosity.jpg"
+              work={`Internal student group supervised directly by the head of the study program, focusing on competitions and research
+Participated in 7+ national and international competitions within one year
+Delivered official presentation at the Pre-FYP event to 50+ freshmen, promoting the lab and recruiting new members`}
+              images={[
+                "/images/experience/nisa_labcuriosity.JPG",
+                "/images/experience/labcurio.JPG",
+              ]}
+            />
+
+
+             <Details
+              position="Public Relation"
+              company="Himpunan Mahasiswa Teknik Informatika"
+              companyLink="https://ofog.himtibinus.or.id/"
+              time="March 2024 - 2025"
+              address="Bandung, Indonesia"
+              work={`Speaker at ShareIT HIMTI 2025, delivering public presentations to improve engagement and communication skills
+Designed visual content for Company Visit 2024, contributing to successful corporate engagementevents
+Negotiated sponsorships and secured partnerships for TECHNO 2024 to support event funding and collaborations`}
+              images={[
+                "/images/experience/nisa_sertif_himti.png",
+                "/images/experience/compvishimti.JPG",
+                "/images/experience/ldkchimti.PNG",
+              ]}
+            />
+
+             <Details
+              position="Facilitator"
+              company="Indonesia Andorid Kejar"
+              companyLink="/"
+              time="2017"
+              address="Jakarta, Indonesia"
+              work={`As a facilitator for Indonesia Android Kejar Batch 3,
+                 I guided beginner-level participants in learning Java and Android app development. 
+                 I was responsible for mentoring students, explaining core programming concepts, 
+                 and ensuring participants successfully built their first Android projects.`}
+              images={[
+                "/images/experience/iak_batch_3.jpg",
+                "/images/experience/iaknisa.jpg",
+             
+              ]}
             />
           </ul>
         </div>

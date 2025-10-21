@@ -33,7 +33,7 @@ export default function Home() {
               <p className='my-4 text-base font-medium'>
                 I’m a Computer Science student at BINUS University with a strong passion in IT,
                 especially in mobile app development and UI/UX design. With over 3 years of
-                experience in Android development using Kotlin, I’m excited to use my skills and
+                experience in Android development, I’m excited to use my skills and
                 keep learning through real-world experience.
               </p>
             </div>

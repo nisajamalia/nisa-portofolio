@@ -2,9 +2,13 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll } from "framer-motion";
+import Image from "next/image";
 import Lilcon from "./Lilcon";
 
-const Details = ({ type, time, place, info}) => {
+// ============================
+// 🔹 DETAILS COMPONENT
+// ============================
+const Details = ({ type, time, place, info, logo }) => {
   const ref = useRef(null);
 
   return (
@@ -16,28 +20,52 @@ const Details = ({ type, time, place, info}) => {
       viewport={{ once: true }}
       className="relative flex items-start gap-6 sm:gap-8 mb-12 sm:mb-16"
     >
-      {/* Circle timeline di kiri */}
+      {/* Circle timeline */}
       <div className="relative flex flex-col items-center">
         <Lilcon reference={ref} />
       </div>
 
-      {/* Card konten */}
+      {/* Card */}
       <div className="flex-1 bg-white border border-gray-200 hover:border-purple-400 rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-purple-300/30 transition-all duration-300">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1 leading-snug">
-          {type}{" "}
-          
-        </h3>
-        <span className="block text-sm text-gray-500 mb-3">
-          {time} • {place}
-        </span>
-        <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-          {info}
-        </p>
+        <div className="flex items-center gap-4 mb-3">
+          {/* ✅ Logo sekolah */}
+          {logo && (
+            <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 overflow-hidden rounded-full border border-gray-200 shadow-sm">
+              <Image
+                src={logo}
+                alt={`${place} logo`}
+                width={56}
+                height={56}
+                className="object-contain w-full h-full bg-white p-1"
+              />
+            </div>
+          )}
+
+          {/* Nama & waktu */}
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-900 leading-snug">
+              {type}
+            </h3>
+            <span className="block text-sm text-gray-500">
+              {time} • {place}
+            </span>
+          </div>
+        </div>
+
+        {/* Info tambahan */}
+        {info && (
+          <p className="text-gray-600 text-sm sm:text-base leading-relaxed mt-2">
+            {info}
+          </p>
+        )}
       </div>
     </motion.li>
   );
 };
 
+// ============================
+// 🔹 MAIN EDUCATION COMPONENT
+// ============================
 export default function Education() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -63,40 +91,49 @@ export default function Education() {
           </span>
         </h2>
 
-        {/* Wrapper timeline */}
+        {/* Timeline */}
         <div className="relative w-full max-w-3xl mx-auto">
-          {/* Garis utama timeline */}
+          {/* Garis utama */}
           <div className="absolute left-[1.3rem] sm:left-[1.65rem] top-0 w-[2px] h-full bg-gray-300 rounded-full" />
 
-          {/* Garis progress animasi */}
+          {/* Garis progress */}
           <motion.div
             style={{ scaleY: scrollYProgress }}
             className="absolute left-[1.3rem] sm:left-[1.65rem] top-0 w-[2px] h-full origin-top bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"
           />
 
-          {/* Daftar item */}
+          {/* ✅ Education List */}
           <ul className="relative mt-8 ml-6 sm:ml-8">
-            <Details
-              type="Bachelor Of Science In Computer Science"
-              time="2016-2020"
-              place="Massachusetts Institute Of Technology (MIT)"
-              info="Relevant courses included Data Structures and Algorithms, Computer Systems Engineering, and Artificial 
-Intelligence."
+
+             <Details
+              type="Bachelor of Science in Computer Science"
+              time="2023 - 2027"
+              place="Bina Nusantara University"
+              logo="/images/logos/binus.png"
+              info="Currently pursuing a Computer Science degree focusing on Mobile Development, AI, and Internet of Things (IoT)."
             />
 
              <Details
-              type="Bachelor Of Science In Computer Science"
-              time="2016-2020"
-              place="Massachusetts Institute Of Technology (MIT)"
-              info="Relevant courses included Data Structures and Algorithms, Computer Systems Engineering, and Artificial 
-Intelligence."
+              type="Senior High School - Rekayasa Perangkat Lunak"
+              time="2019 - 2022"
+              place="Islamic Development Network"
+              logo="/images/logos/idn.png"
+              info="Learned Software Engineering from intermediate to expert level, focusing on Mobile App Development and practical project-based learning."
+            />
+ 
+            <Details
+              type="Junior High School - IT"
+              time="2017 - 2019"
+              place="Islamic Development Network"
+              logo="/images/logos/idn.png"
+              info="Focused on foundational IT education and software basics, building early interest in programming and technology. Learned to create simple games and digital designs, progressing to basic web and app platform development."
             />
 
+           
+           
           </ul>
         </div>
       </motion.div>
     </section>
   );
-};
-
-
+}

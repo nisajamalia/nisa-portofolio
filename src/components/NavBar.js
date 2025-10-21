@@ -34,7 +34,7 @@ const NavBar = () => {
         <CustomLink href="/" title="Home" />
         <CustomLink href="/about" title="About" />
         <CustomLink href="/project" title="Project" />
-        <CustomLink href="/achieve" title="Achievement" />
+        <CustomLink href="/achievement" title="Achievement" />
       </nav>
 
       {/* Logo di tengah */}

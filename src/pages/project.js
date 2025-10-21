@@ -55,8 +55,9 @@ const FeaturedProject = ({
   };
 
   return (
-    <article
-      className="w-full flex items-center justify-between relative rounded-3xl border border-solid shadow-2xl p-12"
+   <article
+  className="w-full flex items-center justify-between relative rounded-3xl border border-solid shadow-2xl py-6 px-8"
+
       style={{
         backgroundColor: "#ffffff",
         borderColor: "#000000",
@@ -139,8 +140,9 @@ const FeaturedProject = ({
 // ===== Project Card Component =====
 const ProjectCard = ({ title, type, summary, img, link, github, tools }) => {
   return (
-    <article
-      className="relative w-full flex flex-col items-center justify-center rounded-2xl border border-solid shadow-md p-6"
+   <article
+  className="relative w-full flex flex-col items-center justify-center rounded-2xl border border-solid shadow-md py-4 px-5"
+
       style={{
         backgroundColor: "#ffffff",
         borderColor: "#000000",
