@@ -111,7 +111,7 @@ My journey began in junior high school, where I started coding simple games with
 
               <div className="flex flex-col items-center justify-center">
                 <span className="inline-block text-7xl font-bold">
-                  <AnimatedNumbers value={40} duration={2.5} />+
+                  <AnimatedNumbers value={25} duration={2.5} />+
                 </span>
                 <h2 className="text-xl font-medium text-dark/75 dark:text-light/75">
                   Projects Completed

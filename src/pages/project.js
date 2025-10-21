@@ -241,9 +241,16 @@ const Project = () => {
               <FeaturedProject
                 title="HouseUz App"
                 images={[project6, project6i]}
-                summary="An application designed to help users easily find houses that match their preferences. This project was developed during my internship at Nusantara Global Inovasi. The app focuses on simplifying the house-hunting process for users who are unsure where to start looking.
-
-The backend was fully built from scratch using Laravel, where I created and managed the database and developed a custom REST API. This API was then integrated into the Android application, which was developed using Kotlin and followed the MVVM architecture pattern."
+                summary={
+    <>
+      <p>
+        An application designed to help users easily find houses that match their preferences. This project was developed during my internship at Nusantara Global Inovasi. The app focuses on simplifying the house-hunting process for users who are unsure where to start looking.
+      </p>
+      <p className="mt-4">
+        The backend was fully built from scratch using Laravel, where I created and managed the database and developed a custom REST API. This API was then integrated into the Android application, which was developed using Kotlin and followed the MVVM architecture pattern.
+      </p>
+    </>
+  }
                 link="/"
                 github="https://github.com/nisajamalia/DisneyMotion"
                 type="Mobile App"
@@ -1002,11 +1009,15 @@ See the weather forecast wherever you are. Search for the location you want to g
                     </h2>
                   </Link>
 
-                  <p className="my-2 font-medium text-dark text-sm">
-                    {
-                      "This is my 4th-semester project, and I contributed to every stage of development — from designing the user interface to building the entire application. Todoo is a mobile app designed for students who often feel overwhelmed by academic workloads. It helps manage time and assignments more effectively by organizing busy schedules, providing smart task suggestions, reminders, and timers to reduce stress and improve productivity."
-                    }
-                  </p>
+                  <div className="my-2 font-medium text-dark text-sm">
+  <p>
+    This is my 4th-semester project, and I contributed to every stage of development — from designing the user interface to building the entire application. 
+  </p>
+  <p className="mt-3">
+    Todoo is a mobile app designed for students who often feel overwhelmed by academic workloads. It helps manage time and assignments more effectively by organizing busy schedules, providing smart task suggestions, reminders, and timers to reduce stress and improve productivity.
+  </p>
+</div>
+
 
                   <div className="flex flex-wrap gap-2 mb-3">
                     {[
@@ -1059,7 +1070,17 @@ See the weather forecast wherever you are. Search for the location you want to g
               <FeaturedProject
                 title="Career Sprint"
                 images={[project11, project11i]}
-                summary="Career Sprint is a competition project that reached the final round of ITCC Udayana 2024. Our team developed an innovative task management platform designed to help employees track progress and achieve their goals through AI-powered interactive roadmaps. I was responsible for designing all visual and user experience aspects of the project. Key features include real-time progress tracking, AI-driven feedback analysis, and personalized roadmap-based training to support continuous skill development."
+              summary={
+  <>
+    <p>
+      Career Sprint is a competition project that reached the final round of ITCC Udayana 2024. Our team developed an innovative task management platform designed to help employees track progress and achieve their goals through AI-powered interactive roadmaps.
+    </p>
+    <p className="mt-4">
+      I was responsible for designing all visual and user experience aspects of the project. Key features include real-time progress tracking, AI-driven feedback analysis, and personalized roadmap-based training to support continuous skill development.
+    </p>
+  </>
+}
+
                 link="/"
                 github="/"
                 type="UI/UX Design"
