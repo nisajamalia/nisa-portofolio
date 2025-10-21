@@ -627,7 +627,7 @@ See the weather forecast wherever you are. Search for the location you want to g
               />
             </div>
 
-            {/* D'Zikr Apps */}
+            {/* DZikr Apps */}
             <div className="col-span-6">
               <article
                 className="relative w-full flex flex-col items-center justify-center rounded-2xl border border-solid shadow-md p-6"
@@ -661,7 +661,7 @@ See the weather forecast wherever you are. Search for the location you want to g
                       >
                         <Image
                           src={imgSrc}
-                          alt={`D'zikr App ${index}`}
+                          alt={`Dzikr App ${index}`}
                           className="w-full h-auto object-cover rounded-xl"
                         />
                       </motion.div>
@@ -680,7 +680,7 @@ See the weather forecast wherever you are. Search for the location you want to g
                     className="hover:underline underline-offset-2"
                   >
                     <h2 className="my-2 w-full text-left text-2xl font-bold">
-                      D'zikr App
+                      Dzikr App
                     </h2>
                   </Link>
 
