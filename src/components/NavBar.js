@@ -33,7 +33,7 @@ const NavBar = () => {
       <nav className='flex items-center space-x-8'>
         <CustomLink href="/" title="Home" />
         <CustomLink href="/about" title="About" />
-        <CustomLink href="/projects" title="Projects" />
+        <CustomLink href="/project" title="Project" />
         <CustomLink href="/achieve" title="Achievement" />
       </nav>
 

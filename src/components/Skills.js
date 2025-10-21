@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const categories = [
   {
     title: "Programming Languages",
-    items: ["Kotlin", "Java", "C/C++", "Python", "PHP", "HTML", "CSS"],
+    items: ["Kotlin", "Java","Dart", "C/C++", "Python", "PHP", "HTML", "CSS"],
   },
   {
     title: "Framework & Architecture",
@@ -45,22 +45,19 @@ const item = {
 
 export default function Skills() {
   return (
-    <section className="flex flex-col items-center justify-center py-20 px-6 bg-white text-white">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="relative w-full max-w-5xl bg-[#111111] border border-gray-800 rounded-3xl shadow-lg p-10 md:p-16 overflow-hidden"
-      >
-        {/* Efek gradasi */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl" />
-
-        <h2 className="relative font-bold text-4xl md:text-6xl mb-12 text-center tracking-tight">
-          <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-            Skills
-          </span>
-        </h2>
+<section className="flex flex-col items-center justify-center py-20 px-5 sm:px-8 text-gray-900">
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    viewport={{ once: true }}
+    className="relative w-full max-w-5xl bg-white border border-gray-200 rounded-3xl shadow-lg p-8 sm:p-12 md:p-16 overflow-hidden"
+  >
+    <h2 className="relative font-bold text-4xl sm:text-5xl md:text-6xl mb-16 text-center tracking-tight">
+      <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+        Skills
+      </span>
+    </h2>
 
         {/* Mapping tiap kategori */}
         {categories.map((category, index) => (
@@ -71,7 +68,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
           >
-            <h3 className="text-xl font-semibold mb-6 text-purple-300 border-b border-purple-800 pb-2">
+            <h3 className="text-lg sm:text-xl font-semibold mb-6 text-purple-600 border-b border-gray-200 pb-2">
               {category.title}
             </h3>
 
@@ -87,14 +84,14 @@ export default function Skills() {
                   key={i}
                   variants={item}
                   whileHover={{
-                    scale: 1.1,
-                    y: -5,
-                    boxShadow: "0 0 15px rgba(168,85,247,0.4)",
+                    scale: 1.05,
+                    y: -4,
+                    boxShadow: "0 4px 12px rgba(168,85,247,0.25)",
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center justify-center text-center bg-[#1b1b1b] border border-gray-700 hover:border-purple-400 
-                            rounded-xl py-3 px-5 cursor-pointer shadow-sm hover:shadow-purple-500/20 
-                            transition-all duration-300 font-medium text-lg"
+                  className="flex items-center justify-center text-center bg-white border border-gray-200 hover:border-purple-400 
+                            rounded-xl py-3 px-5 cursor-pointer shadow-sm hover:shadow-purple-300/30 
+                            transition-all duration-300 font-medium text-gray-800 text-lg"
                 >
                   {skill}
                 </motion.div>
