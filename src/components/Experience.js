@@ -116,17 +116,16 @@ const Details = ({
 // 🔹 MAIN EXPERIENCE COMPONENT
 // ============================
 export default function Experience() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end center"],
-  });
+  const containerRef = useRef(null);
+const { scrollYProgress } = useScroll({
+  target: containerRef,
+  offset: ["start 0.9", "end 0.9"], // memastikan progress penuh di akhir card
+});
+
 
   return (
-    <section
-      ref={ref}
-      className="flex flex-col items-center justify-center py-24 px-5 sm:px-8 text-gray-900"
-    >
+    <section className="flex flex-col items-center justify-center py-24 px-5 sm:px-8 text-gray-900 pb-40">
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -141,16 +140,19 @@ export default function Experience() {
         </h2>
 
         {/* Timeline Wrapper */}
-        <div className="relative w-full max-w-3xl mx-auto">
-          {/* Timeline Lines */}
-          <div className="absolute left-[1.3rem] sm:left-[1.65rem] top-0 w-[2px] h-full bg-gray-300 rounded-full" />
-          <motion.div
-            style={{ scaleY: scrollYProgress }}
-            className="absolute left-[1.3rem] sm:left-[1.65rem] top-0 w-[2px] h-full origin-top bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"
-          />
+     <div ref={containerRef} className="relative w-full max-w-3xl mx-auto">
+  {/* Timeline Lines - Garis Background */}
+  <div className="absolute left-[1.3rem] sm:left-[1.65rem] top-0 w-[2px] h-full bg-gray-300 rounded-full" />
+  
+  {/* Timeline Lines - Garis Progress (Animasi) */}
+<motion.div
+  style={{ scaleY: scrollYProgress, transformOrigin: "top" }}
+  className="absolute left-[1.3rem] sm:left-[1.65rem] top-0 w-[2px] min-h-full origin-top bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"
+/>
 
-          {/* Experience List */}
-          <ul className="relative mt-8 ml-6 sm:ml-8">
+
+  {/* Experience List - Catat: ada margin kiri yang penting */}
+  <ul className="relative mt-8 ml-6 sm:ml-8">
             <Details
               position="Fullstack Developer"
               company="PT Nusantara Global Inovasi"

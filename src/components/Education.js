@@ -68,10 +68,11 @@ const Details = ({ type, time, place, info, logo }) => {
 // ============================
 export default function Education() {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end center"],
-  });
+const { scrollYProgress } = useScroll({
+  target: ref,
+  offset: ["start end", "end 0.8"],
+});
+
 
   return (
     <section

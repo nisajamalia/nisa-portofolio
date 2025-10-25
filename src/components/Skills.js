@@ -15,12 +15,14 @@ const categories = [
       { name: "PHP", logo: "/images/logos/php.png" },
       { name: "HTML", logo: "/images/logos/html.png" },
       { name: "CSS", logo: "/images/logos/css.png" },
+      { name: "JavaScript", logo: "/images/logos/jss.png" },
     ],
   },
   {
     title: "Framework & Architecture",
     items: [
       { name: "Laravel", logo: "/images/logos/laravel.png" },
+      { name: "React JS", logo: "/images/logos/react.png" },
       { name: "CodeIgniter", logo: "/images/logos/ci.png" },
       { name: "MVC", logo: "/images/logos/mvc.png" },
       { name: "MVVM", logo: "/images/logos/mvvm.png" },
@@ -31,7 +33,7 @@ const categories = [
       { name: "Koin", logo: "/images/logos/koin.png" },
       { name: "Dagger Hilt", logo: "/images/logos/dh.jpg" },
       { name: "Coroutines", logo: "/images/logos/coroutines.png" },
-      { name: "Navigation Component", logo: "/images/logos/navigationc.png" }
+      { name: "Navigation Component", logo: "/images/logos/navigationc.png" },
     ],
   },
   {
