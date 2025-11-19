@@ -75,21 +75,21 @@ const NavBar = () => {
 
         <nav className="flex items-center gap-5">
           <motion.a
-            href="https://github.com"
+            href="https://github.com/nisajamalia"
             target="_blank"
             whileHover={{ y: -3 }}
           >
             <GithubIcon className="w-7 h-7 text-black" />
           </motion.a>
           <motion.a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/nisa-jamalia-hanif-83a491170/"
             target="_blank"
             whileHover={{ y: -3 }}
           >
             <LinkedInIcon className="w-7 h-7 text-[#0077B5]" />
           </motion.a>
           <motion.a
-            href="https://instagram.com"
+            href="https://www.instagram.com/nysanrhyt?igsh=a3BibHF3MGtybnJy&utm_source=qr"
             target="_blank"
             whileHover={{ y: -3 }}
           >
