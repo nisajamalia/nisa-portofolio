@@ -75,7 +75,7 @@ export default function Home() {
     className="flex flex-col sm:flex-row items-center gap-4 mt-3"
   >
     <Link
-      href="/Curriculum Vitae Nisa Jamalia.pdf"
+      href="/Curriculum Vitae Nisa Jamaliaa.pdf"
       target="_blank"
       className="flex items-center bg-dark text-light px-6 py-2.5
       rounded-lg text-base sm:text-lg font-semibold hover:bg-light hover:text-dark
