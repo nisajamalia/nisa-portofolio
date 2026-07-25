@@ -9,7 +9,7 @@ const categories = [
     items: [
       { name: "Kotlin", logo: "/images/logos/kotlin.png" },
       { name: "Java", logo: "/images/logos/java.png" },
-      { name: "Dart", logo: "/images/logos/dart.png" },
+      { name: "Flutter", logo: "/images/logos/flutter.png" },
       { name: "C/C++", logo: "/images/logos/cc.png" },
       { name: "Python", logo: "/images/logos/pythonlog.png" },
       { name: "PHP", logo: "/images/logos/php.png" },
@@ -23,6 +23,7 @@ const categories = [
     items: [
       { name: "Laravel", logo: "/images/logos/laravel.png" },
       { name: "React JS", logo: "/images/logos/react.png" },
+      { name: "Node JS", logo: "/images/logos/nodejs.png"},
       { name: "CodeIgniter", logo: "/images/logos/ci.png" },
       { name: "MVC", logo: "/images/logos/mvc.png" },
       { name: "MVVM", logo: "/images/logos/mvvm.png" },
@@ -37,6 +38,16 @@ const categories = [
     ],
   },
   {
+    title: "Data Science & Analytics",
+    items: [
+      { name: "Dataiku", logo: "/images/logos/dataiku.png" },
+      { name: "Pandas", logo: "/images/logos/pandas.png" },
+      { name: "NumPy", logo: "/images/logos/numpyy.png" },
+      { name: "Matplotlib", logo: "/images/logos/matplot.png" },
+    ],
+  },
+
+  {
     title: "Database & Service",
     items: [
       { name: "MySQL", logo: "/images/logos/mysql.png" },
@@ -46,29 +57,46 @@ const categories = [
       { name: "RESTful API", logo: "/images/logos/rest.png" },
     ],
   },
+
+  {
+    title: "AI & Machine Learning",
+    items: [
+      { name: "TensorFlow", logo: "/images/logos/tensorflow.png" },
+      { name: "Roboflow", logo: "/images/logos/roboflow.png" },
+      { name: "LLM", logo: "/images/logos/llm2.jpg" },
+    ],
+  },
+
+  {
+    title: "Tools & Automation",
+    items: [
+      { name: "UiPath", logo: "/images/logos/uipath.png" },
+      { name: "Postman", logo: "/images/logos/postman.png" },
+    ],
+  },
 ];
 
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.04, delayChildren: 0.05 },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, scale: 0.8, y: 20 },
+  hidden: { opacity: 0, scale: 0.92, y: 10 },
   show: {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 120, damping: 12 },
+    transition: { type: "spring", stiffness: 260, damping: 22 },
   },
 };
 
 export default function Skills() {
   return (
-    <section className="flex flex-col items-center justify-center py-20 px-5 sm:px-8 text-gray-900">
+    <section className="flex flex-col items-center justify-center py-8 px-5 sm:px-8 text-gray-900">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -87,9 +115,10 @@ export default function Skills() {
           <motion.div
             key={index}
             className="relative mb-10 last:mb-0"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.4 }}
           >
             <h3 className="text-lg sm:text-xl font-semibold mb-6 text-purple-600 border-b border-gray-200 pb-2">
               {category.title}
@@ -99,7 +128,7 @@ export default function Skills() {
               variants={container}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.15 }}
               className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
             >
               {category.items.map((skill, i) => (

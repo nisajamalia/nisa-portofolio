@@ -69,18 +69,17 @@ const Details = ({
         {images.length > 0 && (
           <>
             {images.length === 1 ? (
-              // === Single Image → full width
+              // === Single Image → dikecilkan, object-contain supaya tidak ada bagian yang terpotong
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="relative w-full rounded-2xl overflow-hidden border border-gray-200 shadow-md"
+                className="relative w-full max-w-xs sm:max-w-sm mx-auto sm:mx-0 aspect-[4/3] bg-gray-50 rounded-2xl overflow-hidden border border-gray-200 shadow-md"
               >
                 <Image
                   src={images[0]}
                   alt={`${position} - ${company}`}
-                  width={1000}
-                  height={600}
-                  className="w-full h-auto object-cover"
+                  fill
+                  className="object-contain"
                 />
               </motion.div>
             ) : (
@@ -123,7 +122,7 @@ const { scrollYProgress } = useScroll({
 
 
   return (
-    <section className="flex flex-col items-center justify-center py-24 px-5 sm:px-8 text-gray-900 pb-40">
+    <section className="flex flex-col items-center justify-center py-8 px-5 sm:px-8 text-gray-900">
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -158,10 +157,10 @@ const { scrollYProgress } = useScroll({
               companyLink="https://www.medcoenergi.com/"
               time="Mei 2026 - November 2026"
               address="Jakarta, Indonesia"
-             work={`Developed bSafe, a mobile reporting application for field workers to report issues directly to the office — covering field incidents, kitchen/facility problems, and other operational concerns in real time
+             work={`Developed a mobile reporting application for field workers to report issues directly to the office — covering field incidents, kitchen/facility problems, and other operational concerns in real time
 Developed mSeek, an AI agent for Medco employees to access draft releases, documents, and company or division policies
 Built and rigorously tested mSeek's AI responses across nearly 100 test questions to ensure accuracy and reliability before rollout`}
-              images={["/images/experience/pkl_nisa.jpg"]}
+              images={["/images/experience/nisamedco.jpeg"]}
             />
             
             <Details

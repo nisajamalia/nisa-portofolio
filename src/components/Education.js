@@ -75,10 +75,10 @@ const { scrollYProgress } = useScroll({
 
 
   return (
-    <section
-      ref={ref}
-      className="flex flex-col items-center justify-center py-24 px-5 sm:px-8 text-gray-900"
-    >
+   <section
+  ref={ref}
+  className="flex flex-col items-center justify-center py-8 px-5 sm:px-8 text-gray-900"
+>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ const { scrollYProgress } = useScroll({
             />
 
              <Details
-              type="Senior High School - Rekayasa Perangkat Lunak"
+              type="Senior High School - Software Engineering"
               time="2019 - 2022"
               place="Islamic Development Network"
               logo="/images/logos/idn.png"

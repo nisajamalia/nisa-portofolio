@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import AnimatedText from "@/components/AnimatedText";
 import Layout from "@/components/Layout";
-import TransitionEffect from "@/components/TransitionEffect"; 
+import TransitionEffect from "@/components/TransitionEffect";
 import profilePic from "../../public/images/profile/NisaProfile.JPG";
 import { animate, useInView } from "framer-motion";
 import Skills from "@/components/Skills";
@@ -31,6 +31,33 @@ const AnimatedNumbers = ({ value, duration = 2 }) => {
   return <span ref={ref}></span>;
 };
 
+// Highlight kata kunci di dalam paragraf bio — konsisten dengan gaya di homepage
+const Highlight = ({ children }) => (
+  <span className="text-dark dark:text-light font-semibold">{children}</span>
+);
+
+// Kartu statistik bergaya "sticker" — selaras dengan card di halaman project
+const StatCard = ({ value, suffix = "+", label, delay = 0 }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.4 }}
+    transition={{ duration: 0.6, delay, ease: "easeOut" }}
+    className="relative w-full"
+  >
+    <div className="absolute top-1.5 -right-1.5 -z-10 w-full h-full rounded-2xl bg-black" />
+    <div className="flex flex-col items-center justify-center text-center rounded-2xl border-2 border-black bg-white dark:bg-dark px-6 py-6 sm:py-7">
+      <span className="inline-block text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+        <AnimatedNumbers value={value} duration={2.2} />
+        {suffix}
+      </span>
+      <h2 className="mt-1.5 text-sm sm:text-base font-medium text-dark/75 dark:text-light/75 leading-snug max-w-[200px]">
+        {label}
+      </h2>
+    </div>
+  </motion.div>
+);
+
 const About = () => {
   return (
     <>
@@ -47,133 +74,150 @@ const About = () => {
 
       <main className="flex w-full flex-col items-center justify-center dark:text-light">
         <Layout className="pt-12 sm:pt-16">
-          {/* JUDUL */}
-
-         {/* JUDUL UTAMA (sama seperti Achievement) */}
-<motion.div
-  initial={{ opacity: 0, y: 40 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-  className="text-center mb-16 px-4 sm:px-6 md:px-0"
->
-  <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-    Passion Fuels Purpose!
-  </h1>
-</motion.div>
-
+          {/* JUDUL UTAMA */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+            className="text-center mb-14 sm:mb-16 px-4 sm:px-6 md:px-0"
+          >
+            <span className="inline-block mb-2 text-sm sm:text-base font-semibold text-purple-600 dark:text-purple-300 tracking-wide">
+              Get To Know Me
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent leading-tight">
+              Passion Fuels Purpose!
+            </h1>
+          </motion.div>
 
           {/* GRID UTAMA */}
           <div
-            className="grid w-full grid-cols-1 lg:grid-cols-8 gap-10 sm:gap-12 lg:gap-16 
-                       max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-0"
+            className="grid w-full grid-cols-1 lg:grid-cols-8 gap-12 sm:gap-14 lg:gap-10
+                       max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-0 items-stretch"
           >
+            {/* BAGIAN FOTO — tampil lebih dulu di mobile, sticker card selaras dengan homepage */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="order-1 lg:order-2 lg:col-span-3 mx-auto lg:mx-0 w-full max-w-[380px] sm:max-w-[420px]"
+            >
+              <div className="relative">
+                <div className="absolute top-2.5 -right-2.5 -z-10 w-full h-full rounded-[1.75rem] bg-black" />
+                <div className="relative rounded-[1.75rem] border-2 border-black bg-white p-3 shadow-xl">
+                  <Image
+                    src={profilePic}
+                    alt="Nisa Jamalia"
+                    className="w-full h-auto rounded-2xl object-cover"
+                    priority
+                    sizes="(max-width: 768px) 90vw,
+                            (max-width: 1024px) 70vw,
+                            (max-width: 1280px) 50vw,
+                            33vw"
+                  />
+                </div>
+              </div>
+
+              {/* Badge kecil di bawah foto — ringkasan identitas, konsisten dengan homepage */}
+              <div className="flex flex-wrap justify-center gap-2 mt-5">
+                {["Computer Science", "BINUS University"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs sm:text-sm font-semibold border-2 border-black rounded-full px-3 py-1 bg-white dark:bg-dark"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
             {/* BAGIAN TEKS */}
-            <div className="lg:col-span-3 flex flex-col items-start justify-start">
-              <h2 className="mb-4 text-lg font-bold uppercase text-dark/75 dark:text-light/75">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="order-2 lg:order-1 lg:col-span-3 flex flex-col items-start justify-start"
+            >
+              <h2 className="mb-5 text-sm sm:text-base font-bold uppercase tracking-widest text-dark/50 dark:text-light/50">
                 Biography
               </h2>
 
-              <p className="font-medium mb-4">
-                Hi, I’m Nisa Jamalia, a Computer Science student at BINUS
-                University passionate about mobile app development and UI/UX
-                design. My journey began in junior high school, where I started
-                coding simple games with Scratch and Unity — sparking a lasting
-                passion for software and digital design.
-              </p>
+              <div className="space-y-4 text-[15px] sm:text-base leading-relaxed text-dark/85 dark:text-light/85">
+                <p>
+                  Hi, I&apos;m Nisa Jamalia, a Computer Science student at{" "}
+                  <Highlight>BINUS University</Highlight> passionate about{" "}
+                  <Highlight>mobile app development</Highlight> and{" "}
+                  <Highlight>UI/UX design</Highlight>. My journey began in
+                  junior high school, where I started coding simple games with
+                  Scratch and Unity — sparking a lasting passion for software
+                  and digital design.
+                </p>
 
-              <p className="font-medium mb-4">
-                With over three years of experience in mobile development using
-                Kotlin & Java, I enjoy creating apps that combine functionality
-                with beautiful user experiences. I also love crafting intuitive
-                interfaces with Figma.
-              </p>
+                <p>
+                  With over three years of experience in mobile development
+                  using <Highlight>Kotlin &amp; Java</Highlight>, I enjoy
+                  creating apps that combine functionality with beautiful user
+                  experiences. I also love crafting intuitive interfaces with{" "}
+                  <Highlight>Figma</Highlight>.
+                </p>
 
-              <p className="font-medium mb-4">
-                I’m actively involved in tech communities such as GDGoC, IAK,
-                HIMTI BINUS, and Lab Curiosity, where I mentor students and lead
-                Android workshops.
-              </p>
+                <p>
+                  I&apos;m actively involved in tech communities such as{" "}
+                  <Highlight>GDGoC</Highlight>, <Highlight>IAK</Highlight>,{" "}
+                  <Highlight>HIMTI BINUS</Highlight>, and{" "}
+                  <Highlight>Lab Curiosity</Highlight>, where I mentor students
+                  and lead Android workshops.
+                </p>
 
-              <p className="font-medium mb-4">
-                As I continue my journey, I strive to keep improving my skills,
-                explore emerging technologies like Data Science and IoT, and
-                build digital products that are not only functional but also
-                meaningful to users.
-              </p>
+                <p>
+                  As I continue my journey, I strive to keep improving my
+                  skills, explore emerging technologies like Data Science and
+                  IoT, and build digital products that are not only functional
+                  but also meaningful to users.
+                </p>
 
-              <p className="font-medium">
-                For me, technology is more than just code — it’s a way to
-                connect creativity, innovation, and human experience.
-              </p>
-            </div>
+                <p className="italic text-dark/70 dark:text-light/70 border-l-2 border-black/20 dark:border-light/20 pl-4">
+                  For me, technology is more than just code — it&apos;s a way
+                  to connect creativity, innovation, and human experience.
+                </p>
+              </div>
+            </motion.div>
 
-            {/* BAGIAN FOTO */}
-            <div
-              className="lg:col-span-3 relative h-max rounded-2xl border-2 border-solid p-6 sm:p-8 
-                         mx-auto lg:mx-0 w-full max-w-[400px] sm:max-w-[450px] md:max-w-[500px]"
-              style={{
-                backgroundColor: "#ffffff",
-                borderColor: "#000000",
-              }}
-            >
-              <div
-                className="absolute top-0 -right-3 -z-10 w-[102%] h-[103%] rounded-[2rem]"
-                style={{ backgroundColor: "#000000" }}
-              />
-              <Image
-                src={profilePic}
-                alt="Nisa Jamalia"
-                className="w-full h-auto rounded-2xl"
-                priority
-                sizes="(max-width: 768px) 90vw,
-                        (max-width: 1024px) 70vw,
-                        (max-width: 1280px) 50vw,
-                        33vw"
-              />
-            </div>
+            {/* BAGIAN STATISTIK — sticker cards, tersebar rata mengikuti tinggi foto */}
+            <div className="order-3 lg:col-span-2 flex flex-col gap-18 lg:gap-22 mt-4 lg:mt-0">
+  <StatCard
+    value={20}
+    label="Tech, Competitions & Communities Joined"
+    delay={0}
+  />
 
-            {/* BAGIAN STATISTIK */}
-         <motion.div
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, amount: 0.2 }}
-  transition={{ duration: 0.8 }}
-  className="lg:col-span-2 flex flex-col items-center justify-between 
-             text-center space-y-10 sm:space-y-12 mt-8 lg:mt-0"
->
-  <div className="flex flex-col items-center justify-center">
-    <span className="inline-block text-6xl sm:text-7xl font-bold">
-      <AnimatedNumbers value={20} duration={2.5} />+
-    </span>
-    <h2 className="text-lg sm:text-xl font-medium text-dark/75 dark:text-light/75 leading-snug max-w-[220px]">
-      Tech, Competitions & Communities Joined
-    </h2>
-  </div>
+  <StatCard
+    value={25}
+    label="Projects Completed"
+    delay={0.1}
+  />
 
-  <div className="flex flex-col items-center justify-center">
-    <span className="inline-block text-6xl sm:text-7xl font-bold">
-      <AnimatedNumbers value={25} duration={2.5} />+
-    </span>
-    <h2 className="text-lg sm:text-xl font-medium text-dark/75 dark:text-light/75">
-      Projects Completed
-    </h2>
-  </div>
-
-  <div className="flex flex-col items-center justify-center">
-    <span className="inline-block text-6xl sm:text-7xl font-bold">
-      <AnimatedNumbers value={5} duration={2.5} />+
-    </span>
-    <h2 className="text-lg sm:text-xl font-medium text-dark/75 dark:text-light/75">
-      Years Of Experience
-    </h2>
-  </div>
-</motion.div>
+  <StatCard
+    value={5}
+    label="Years Of Experience"
+    delay={0.2}
+  />
+</div>
           </div>
 
           {/* BAGIAN LAIN */}
-          <Skills />
-          <Experience />
-          <Education />
+       <div className="mt-8 md:mt-10">
+  <Skills />
+</div>
+
+<div className="mt-8 md:mt-10">
+  <Experience />
+</div>
+
+<div className="mt-2 md:mt-4">
+  <Education />
+</div>
         </Layout>
       </main>
     </>
