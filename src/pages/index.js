@@ -153,7 +153,7 @@ export default function Home() {
                 transition={{ delay: 1.4, duration: 0.6, ease: "easeOut" }}
                 className="flex flex-wrap justify-center md:justify-start gap-2 mb-7"
               >
-                {["Android Development", "Mobile App Dev", "UI/UX Design", "Kotlin"].map(
+                {["Software Engineer", "Mobile App Dev", "UI/UX Design", "Data Science"].map(
                   (skill) => (
                     <span
                       key={skill}
