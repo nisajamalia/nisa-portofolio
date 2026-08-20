@@ -80,6 +80,72 @@ const ProjectSummary = ({ summary, className = "" }) => {
   return <p className={className}>{summary}</p>;
 };
 
+const ProjectDetails = ({
+  projectType,
+  isGroupProject,
+  role,
+  impact,
+  learnings,
+  className = "",
+}) => {
+  const hasBadge = Boolean(projectType) || isGroupProject;
+  const hasBox = Boolean((isGroupProject && role) || impact || learnings);
+  if (!hasBadge && !hasBox) return null;
+
+  return (
+    <div className={`w-full ${className}`}>
+      {/* Single status badge: Group Project takes priority over the origin type,
+          so we never show two overlapping badges. */}
+      {hasBadge && (
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          {isGroupProject ? (
+            <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold uppercase tracking-wide bg-amber-500 text-white py-1 px-3 rounded-full">
+              Group Project
+            </span>
+          ) : (
+            <span
+              className={`inline-flex items-center text-[11px] sm:text-xs font-bold uppercase tracking-wide py-1 px-3 rounded-full text-white ${
+                projectType?.toLowerCase().includes("work assignment") ||
+                projectType?.toLowerCase().includes("internship")
+                  ? "bg-teal-600"
+                  : "bg-blue-600"
+              }`}
+            >
+              {projectType}
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Role / Impact / Learnings — set apart in its own highlighted box */}
+      {hasBox && (
+        <div className="w-full rounded-lg border-l-4 border-black bg-gray-50 px-4 py-3 space-y-2">
+          {isGroupProject && role && (
+            <p className="text-sm leading-relaxed text-gray-800">
+              <span className="font-bold text-dark">My Role — </span>
+              {role}
+            </p>
+          )}
+
+          {impact && (
+            <p className="text-sm leading-relaxed text-gray-800">
+              <span className="font-bold text-dark">Impact — </span>
+              {impact}
+            </p>
+          )}
+
+          {learnings && (
+            <p className="text-sm leading-relaxed text-gray-800">
+              <span className="font-bold text-dark">What I Learned — </span>
+              {learnings}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
 // ============================================================================
 // Featured Project Component — prop gambar: "images"
 // ============================================================================
@@ -92,6 +158,11 @@ const FeaturedProject = ({
   link,
   github,
   tools = [],
+  projectType,
+  isGroupProject,
+  role,
+  impact,
+  learnings,
 }) => {
   const settings = {
     dots: true,
@@ -170,6 +241,16 @@ const FeaturedProject = ({
           className="my-3 font-medium text-dark opacity-80 text-sm leading-relaxed"
         />
 
+        {/* Project Details: type / role / impact / learnings */}
+        <ProjectDetails
+          projectType={projectType}
+          isGroupProject={isGroupProject}
+          role={role}
+          impact={impact}
+          learnings={learnings}
+          className="mb-4"
+        />
+
         {/* Tools */}
         <div className="flex flex-wrap gap-1.5 mb-4">
           {tools.map((tool, index) => (
@@ -235,6 +316,11 @@ const ProjectCard = ({
   github,
   tools = [],
   carousel = [],
+  projectType,
+  isGroupProject,
+  role,
+  impact,
+  learnings,
 }) => {
   const settings = {
     dots: true,
@@ -295,9 +381,9 @@ const ProjectCard = ({
       </div>
 
       {/* Project Content */}
-      <div className="w-full flex-1 flex flex-col items-start justify-between mt-3">
+      <div className="w-full flex-1 flex flex-col items-start mt-3">
         {/* Type */}
-        <span className="text-primary font-medium text-sm sm:text-base">
+        <span className="text-primary font-medium text-sm sm:text-base mb-1">
           {type}
         </span>
 
@@ -319,6 +405,16 @@ const ProjectCard = ({
           className="text-gray-700 text-sm leading-relaxed mt-1.5 mb-3"
         />
 
+        {/* Project Details: type / role / impact / learnings */}
+        <ProjectDetails
+          projectType={projectType}
+          isGroupProject={isGroupProject}
+          role={role}
+          impact={impact}
+          learnings={learnings}
+          className="mb-3"
+        />
+
         {/* Tools */}
         <div className="flex flex-wrap gap-1.5 mb-3">
           {tools.map((tool, index) => (
@@ -332,7 +428,7 @@ const ProjectCard = ({
         </div>
 
         {/* Buttons */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mt-auto">
           {/* Github */}
           {github && (
             <Link
@@ -362,13 +458,7 @@ const ProjectCard = ({
   );
 };
 
-// ============================================================================
-// Project Page
-//
-// STRUKTUR URUTAN:
-// Featured -> 4x ProjectCard (grid 2 kolom) -> Featured -> 4x ProjectCard ->
-// Featured -> 4x ProjectCard -> Featured
-// ============================================================================
+
 
 const Project = () => {
   return (
@@ -424,6 +514,11 @@ The system can identify whether fruits are fresh or rotten across several types 
                 "Vercel",
                 "Railway",
               ]}
+              projectType="Self-Initiated Project"
+              isGroupProject={true}
+              role="Worked as the Data Scientist on the team — handled data wrangling and exploratory data analysis (EDA) on the fruit image dataset, cleaning and structuring the data before it went into model training."
+              impact="Built an end-to-end AI pipeline that classifies fruit freshness through a live web app, turning a trained deep learning model into a tool anyone can use in the browser."
+              learnings="Learned to train and deploy a CNN model with TensorFlow and MobileNetV2, and connect a machine learning model to a full-stack Next.js and Express application."
             />
           </div>
 
@@ -435,41 +530,57 @@ The system can identify whether fruits are fresh or rotten across several types 
             <ProjectCard
               title="SAKTI Student Management Website"
               carousel={[dash1, dash2, dash3, dash4, dash5, dash6]}
-              summary="See the weather forecast wherever you are. Search for the location you want to get the latest weather information. No matter where you are, the weather forecast is always accurate and beautifully presented."
+              summary="SAKTI is a student management dashboard that lets staff manage student records, track academic data, and administer school operations from a centralized web platform."
               link="https://uas-web-no-2.vercel.app/login"
               github="https://github.com/nisajamalia/Uas-web"
               type="Website"
               tools={["Vue JS", "Laravel"]}
+              projectType="Individual Project (Final Exam Project)"
+              isGroupProject={false}
+              impact="Delivered a working full-stack student management system as the final exam project, covering everything from student records to academic tracking."
+              learnings="Learned how to connect a Vue.js frontend to a Laravel REST API and manage relational student data across a full CRUD system."
             />
 
             <ProjectCard
               title="Ticketing Website"
               carousel={[ticket1, ticket2, ticket3, ticket4, ticket5]}
-              summary="See the weather forecast wherever you are. Search for the location you want to get the latest weather information. No matter where you are, the weather forecast is always accurate and beautifully presented."
+              summary="A ticketing platform that allows users to browse events, book tickets, and manage orders through a web-based system."
               link="https://mencoba-ticketflow.vercel.app/login"
               github="https://github.com/nisajamalia/Mencoba-ticketflow"
               type="Website"
               tools={["Node JS", "PHP", "MySQL", "Nginx"]}
+              projectType="Individual Project"
+              isGroupProject={false}
+              impact="Implemented a complete ticket booking flow, from browsing events to checkout, on a stack built entirely from scratch."
+              learnings="Learned to set up and deploy a PHP and Node.js application with MySQL and Nginx, and manage the full booking process end to end."
             />
 
             <ProjectCard
               title="Weather Apps"
               img={project3}
-              summary="See the weather forecast wherever you are. Search for the location you want to get the latest weather information. No matter where you are, the weather forecast is always accurate and beautifully presented."
+              summary="Weather Apps lets users check the current forecast for any location by searching for a city, displaying accurate and clearly presented weather data."
               link="/"
               github="https://github.com/nisajamalia/HomeMarketPlace"
               type="Mobile App"
               tools={["Kotlin", "API", "Date & Time"]}
+              projectType="Individual Project (Class Assignment)"
+              isGroupProject={false}
+              impact="Delivered a lightweight forecast tool that returns accurate, well-presented weather data for any location the user searches."
+              learnings="Learned to work with date and time formatting and integrate a public weather API into a native Kotlin app."
             />
 
             <ProjectCard
               title="Food Recipes App"
               type="Mobile App"
-              summary="Foodie is a project on how to get data from the given API. The data contains food recipes with three menus — Seafood, Dessert, and Profile."
+              summary="Foodie retrieves and displays food recipe data from a public API, organized into three sections: Seafood, Dessert, and Profile."
               link="/"
               github="https://github.com/nisajamalia/KitchenRecipes"
               tools={["Kotlin", "REST API", "GridLayout", "RecyclerView", "Glide"]}
               carousel={[project4, project4i]}
+              projectType="Self-Initiated Project"
+              isGroupProject={false}
+              impact="Built a working recipe browser that organizes content into Seafood, Dessert, and Profile sections, sourced entirely from a public API."
+              learnings="Learned to fetch and render API data with RecyclerView and GridLayout, and handle image loading efficiently with Glide."
             />
           </div>
 
@@ -498,6 +609,10 @@ The backend was fully built from scratch using Laravel, where I created and mana
                 "Data Binding",
                 "MVVM Architecture",
               ]}
+              projectType="Work Assignment (Internship)"
+              isGroupProject={false}
+              impact="Shipped a full house-search feature during the internship, from a custom-built backend to the finished Android app."
+              learnings="Learned to design a database schema and REST API from scratch with Laravel, then consume it in an MVVM Android app with Retrofit and Room."
             />
           </div>
 
@@ -509,7 +624,7 @@ The backend was fully built from scratch using Laravel, where I created and mana
             <ProjectCard
               title="Disney Motion App"
               type="Mobile App"
-              summary="Disney Motion is an application that displays a synopsis or movie storyline from Disney films. It is suitable for those who want to know what a movie is about before watching it."
+              summary="Disney Motion displays synopses and storylines of Disney films, helping users decide what a movie is about before watching it."
               link="/"
               github="https://github.com/nisajamalia/DisneyMotion"
               tools={[
@@ -525,12 +640,16 @@ The backend was fully built from scratch using Laravel, where I created and mana
                 "RecyclerView",
               ]}
               carousel={[project1, project2]}
+              projectType="Individual Project (Class Assignment)"
+              isGroupProject={false}
+              impact="Built a synopsis browser that helps users quickly decide what a Disney film is about before watching, backed by offline caching."
+              learnings="Learned MVVM architecture, dependency injection with Koin, and local data caching with Room in a Jetpack Compose app."
             />
 
             <ProjectCard
               title="MC Catalogue App"
               type="Mobile App"
-              summary="MC Catalogue is an application that lets users view recommendations for the best movies and TV shows with the highest ratings. This application was created using the MovieDb API and implemented in Android Studio."
+              summary="MC Catalogue lets users browse recommended movies and TV shows with the highest ratings, built using the MovieDb API."
               link="/"
               github="https://github.com/nisajamalia/MyMovieCatalogueExtension2"
               tools={[
@@ -543,6 +662,10 @@ The backend was fully built from scratch using Laravel, where I created and mana
                 "Retrofit",
               ]}
               carousel={[project5, project5i]}
+              projectType="Individual Project (Class Assignment)"
+              isGroupProject={false}
+              impact="Extended a base app template into a fully working movie and TV catalogue with a working favorites feature."
+              learnings="Learned dependency injection with Dagger2 and reactive UI updates with LiveData while working with the MovieDb API."
             />
 
             <ProjectCard
@@ -553,12 +676,16 @@ The backend was fully built from scratch using Laravel, where I created and mana
               github="https://github.com/nisajamalia/dzikir_apps"
               tools={["Dart", "State Management", "Widget"]}
               carousel={[project8, project8i]}
+              projectType="Individual Project (Class Assignment)"
+              isGroupProject={false}
+              impact="Delivered a complete prayer and remembrance app that helps users practice daily worship correctly."
+              learnings="Learned Flutter's widget system and basic state management, moving beyond native Android development."
             />
 
             <ProjectCard
               title="Current News App"
               type="Flutter App"
-              summary="Stay updated with the latest news through the Current News app, featuring real-time articles and a modern UI for a smooth reading experience."
+              summary="Current News delivers real-time news articles through a modern, easy-to-read interface."
               link="/"
               github="https://github.com/nisajamalia/current_news"
               tools={[
@@ -569,6 +696,10 @@ The backend was fully built from scratch using Laravel, where I created and mana
                 "Widget",
               ]}
               carousel={[project9, project9i]}
+              projectType="Individual Project (Class Assignment)"
+              isGroupProject={false}
+              impact="Built a real-time news reader with a clean, modern interface for browsing current articles."
+              learnings="Learned to fetch and manage live API data and handle app state in Flutter."
             />
           </div>
 
@@ -592,6 +723,10 @@ The backend was fully built from scratch using Laravel, where I created and mana
                 "CardView",
                 "REST API",
               ]}
+              projectType="Individual Project (Class Assignment)"
+              isGroupProject={false}
+              impact="Built a multi-feature worship app combining prayer times, Quran text, and a zakat calculator in a single tool."
+              learnings="Learned to integrate location-based prayer time APIs with Maps and DatePicker in a native Android app."
             />
           </div>
 
@@ -615,6 +750,10 @@ The backend was fully built from scratch using Laravel, where I created and mana
                 "RecyclerView",
               ]}
               carousel={[project13, project13i]}
+              projectType="Individual Project (Class Assignment)"
+              isGroupProject={false}
+              impact="Delivered a Covid-19 information app with charted data to help users track case trends in real time."
+              learnings="Learned to visualize API data with a charting library inside an MVVM-based Android app."
             />
 
             <ProjectCard
@@ -636,6 +775,11 @@ The backend was fully built from scratch using Laravel, where I created and mana
                 "Room",
               ]}
               carousel={[project12, project12i]}
+              projectType="Class Assignment"
+              isGroupProject={true}
+              role="Handled the end-to-end development of the Android application, from UI/UX design in Figma to implementation using Kotlin and Android Jetpack."
+              impact="Delivered a fully working productivity app as my semester deliverable, covering everything from UI design to backend logic."
+              learnings="Learned end-to-end app development — UI/UX design, local persistence with Room, and asynchronous work with Coroutines."
             />
 
             <ProjectCard
@@ -646,6 +790,11 @@ The backend was fully built from scratch using Laravel, where I created and mana
               github="https://github.com/nisajamalia/TodoApps"
               tools={["Figma"]}
               carousel={[project10, project10i]}
+              projectType="Competition Project"
+              isGroupProject={true}
+              role="Designed the full UI/UX flow in Figma, from wireframes to high-fidelity prototypes."
+              impact="Produced a complete UX case study addressing a real gap in how volunteer organizers and volunteers coordinate."
+              learnings="Learned to conduct user research and translate it into a structured design system in Figma."
             />
 
             <ProjectCard
@@ -662,6 +811,10 @@ The backend was fully built from scratch using Laravel, where I created and mana
                 "Spinner",
               ]}
               carousel={[project14, project14i]}
+              projectType="Individual Project (Class Assignment)"
+              isGroupProject={false}
+              impact="Built a favorites system on top of a public sports API, letting users save and revisit their preferred clubs."
+              learnings="Learned to filter data by league using a Spinner and persist user favorites within the app."
             />
           </div>
 
@@ -681,6 +834,11 @@ The backend was fully built from scratch using Laravel, where I created and mana
               github="/"
               type="UI/UX Design"
               tools={["Figma"]}
+              projectType="Competition Project"
+              isGroupProject={true}
+              role="Designed all visual and user experience aspects of the platform, including the AI-powered roadmap and progress-tracking flows."
+              impact="Reached the final round of ITCC Udayana 2024, standing out among competing teams with a fully designed AI-powered platform."
+              learnings="Learned to design AI-driven UX flows and collaborate closely with developers under competition deadlines."
             />
           </div>
         </Layout>

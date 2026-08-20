@@ -6,7 +6,11 @@ import { motion, useScroll } from "framer-motion";
 const Lilcon = ({ reference }) => {
   const { scrollYProgress } = useScroll({
     target: reference,
-    offset: ["center end", "center center"],
+    // Jendela scroll diperlebar (dari saat card mulai masuk layar sampai
+    // titik tengahnya sejajar tengah layar) supaya SEMUA item — termasuk
+    // yang paling atas dekat judul — punya cukup jarak scroll untuk
+    // terlihat animasinya berjalan, bukan langsung "penuh" begitu terlihat.
+    offset: ["start end", "center center"],
   });
 
   return (

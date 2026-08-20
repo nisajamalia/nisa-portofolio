@@ -57,11 +57,11 @@ const Details = ({
         </span>
 
         {/* Work Description */}
-        <ul className="space-y-2 mb-5">
+        <ul className="space-y-3 mb-5">
           {workPoints.map((point, index) => (
-            <li key={index} className="flex items-start text-gray-700 text-sm sm:text-base">
-              <CheckCircle className="w-4 h-4 text-purple-500 mt-1 mr-2 flex-shrink-0" />
-              <span>{point}</span>
+            <li key={index} className="flex items-start gap-3 text-gray-700 text-sm sm:text-base leading-relaxed">
+              <CheckCircle className="w-[18px] h-[18px] text-purple-500 shrink-0 translate-y-[3px] sm:translate-y-[4px]" />
+              <span className="flex-1">{point}</span>
             </li>
           ))}
         </ul>
