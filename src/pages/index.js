@@ -72,7 +72,6 @@ export default function Home() {
                     transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                     className="flex items-center gap-1.5 bg-white border-2 border-black rounded-full pl-2 pr-3 py-1.5 shadow-md"
                   >
-                    <span className="text-base">📱</span>
                     <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">3+ yrs Android</span>
                   </motion.div>
                 </motion.div>
@@ -88,7 +87,6 @@ export default function Home() {
                     transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
                     className="flex items-center gap-1.5 bg-white border-2 border-black rounded-full pl-2 pr-3 py-1.5 shadow-md"
                   >
-                    <span className="text-base">🎨</span>
                     <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">UI/UX Design</span>
                   </motion.div>
                 </motion.div>
