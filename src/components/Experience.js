@@ -152,16 +152,18 @@ const { scrollYProgress } = useScroll({
   {/* Experience List - Catat: ada margin kiri yang penting */}
   <ul className="relative mt-8 ml-6 sm:ml-8">
     <Details
-              position="Software Engineer Intern"
-              company="PT Medco Energi Internasional Tbk"
-              companyLink="https://www.medcoenergi.com/"
-              time="Mei 2026 - November 2026"
-              address="Jakarta, Indonesia"
-             work={`Developed a mobile reporting application for field workers to report issues directly to the office — covering field incidents, kitchen/facility problems, and other operational concerns in real time
+  position="Software Engineer Intern"
+  company="PT Medco Energi Internasional Tbk"
+  companyLink="https://www.medcoenergi.com/"
+  time="Mei 2026 - November 2026"
+  address="Jakarta, Indonesia"
+  work={`Developed a mobile reporting application for field workers to report issues directly to the office — covering field incidents and other operational concerns in real time
 Developed mSeek, an AI agent for Medco employees to access draft releases, documents, and company or division policies
-Built and rigorously tested mSeek's AI responses across nearly 100 test questions to ensure accuracy and reliability before rollout`}
-              images={["/images/experience/nisamedco.jpeg"]}
-            />
+Built and rigorously tested mSeek's AI responses across nearly 100 test questions to ensure accuracy and reliability before rollout
+Conducted NPT Analysis using DataIKU to identify operational inefficiencies and financial losses`}
+  images={["/images/experience/nisamedco.jpeg"]}
+/>
+  
             
             <Details
               position="Android Mobile Developer Intern"

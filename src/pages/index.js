@@ -173,7 +173,7 @@ export default function Home() {
                 className="flex flex-col sm:flex-row items-center gap-4"
               >
                 <Link
-                  href="/Curriculum Vitae Nisa Jamaliaa.pdf"
+                  href="/CurriculumVitae_NisaJamalia_Update.pdf"
                   target="_blank"
                   className="group flex items-center gap-2 bg-dark text-light px-6 py-2.5
                   rounded-lg text-base sm:text-lg font-semibold hover:bg-light hover:text-dark
