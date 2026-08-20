@@ -115,7 +115,7 @@ const { scrollYProgress } = useScroll({
             />
 
              <Details
-              type="Senior High School - Software Engineering"
+              type="Vocational High School - Software Engineering"
               time="2019 - 2022"
               place="Islamic Development Network"
               logo="/images/logos/idn.png"
